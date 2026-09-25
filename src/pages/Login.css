@@ -1,0 +1,229 @@
+.login {
+  display: flex;
+  min-height: 100vh;
+  font-family: Arial, sans-serif;
+}
+
+/* ==================== PAINEL ESQUERDO (BRANDING) ==================== */
+.login__painel {
+  flex: 1;
+  max-width: 480px;
+  background: linear-gradient(160deg, #1a1c22 0%, #7f1d1d 100%);
+  color: #fff;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.login__marca {
+  display: flex;
+}
+
+.login__logo {
+    width: 180px;
+    height: auto;
+}
+
+.login__logo--mobile {
+  display: none;
+  margin-bottom: 24px;
+}
+
+.login__mensagem {
+  max-width: 360px;
+}
+
+.login__mensagem-icone {
+  color: #fca5a5;
+  margin-bottom: 16px;
+}
+
+.login__mensagem h1 {
+  font-size: 26px;
+  line-height: 1.3;
+  margin: 0 0 16px 0;
+}
+
+.login__mensagem p {
+  font-size: 14px;
+  line-height: 1.6;
+  color: #e2c8c8;
+  margin: 0;
+}
+
+.login__rodape-painel {
+  font-size: 12px;
+  color: #d8a9a9;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+/* ==================== PAINEL DIREITO (FORMULÁRIO) ==================== */
+.login__conteudo {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 24px;
+  background-color: #f8fafc;
+}
+
+.login__form {
+  width: 100%;
+  max-width: 360px;
+  display: flex;
+  flex-direction: column;
+}
+
+.login__form h2 {
+  margin: 0 0 6px 0;
+  font-size: 22px;
+  color: #1a202c;
+}
+
+.login__subtitulo {
+  margin: 0 0 24px 0;
+  font-size: 13px;
+  color: #718096;
+}
+
+.login__erro {
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+  font-size: 13px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 16px;
+}
+
+.login__campo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 16px;
+  font-size: 13px;
+  color: #334155;
+  font-weight: 500;
+}
+
+.login__input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 10px 12px;
+  background-color: #fff;
+  color: #94a3b8;
+}
+
+.login__input:focus-within {
+  border-color: #e53e3e;
+  color: #e53e3e;
+}
+
+.login__input input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 14px;
+  color: #1a202c;
+  background: transparent;
+  min-width: 0;
+}
+
+.login__toggle-senha {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 0;
+}
+
+.login__opcoes {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  font-size: 13px;
+}
+
+.login__lembrar {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #475569;
+}
+
+.login__esqueci {
+  background: none;
+  border: none;
+  color: #e53e3e;
+  cursor: pointer;
+  font-size: 13px;
+  padding: 0;
+}
+
+.login__entrar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #e53e3e;
+  color: #fff;
+  border: none;
+  padding: 12px;
+  border-radius: 6px;
+  font-weight: bold;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.login__entrar:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+
+/* ==================== TABLET / MOBILE (<=768px) ==================== */
+@media (max-width: 768px) {
+  .login {
+    flex-direction: column;
+  }
+
+  .login__painel {
+    max-width: none;
+    padding: 28px 24px;
+  }
+
+  .login__mensagem h1 {
+    font-size: 20px;
+  }
+
+  .login__mensagem p {
+    display: none;
+  }
+
+  .login__rodape-painel {
+    display: none;
+  }
+}
+
+/* ==================== MOBILE PEQUENO (<=420px) ==================== */
+@media (max-width: 420px) {
+  .login__painel {
+    display: none;
+  }
+
+  .login__logo--mobile {
+    display: inline-flex;
+  }
+
+  .login__conteudo {
+    padding: 32px 20px;
+  }
+}

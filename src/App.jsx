@@ -1,36 +1,71 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-
-// Importação das Telas e do Componente de Navegação
-import Login from './pages/Login';
-// import GestaoPessoas from './pages/GestaoPessoas';
-// import CadastroPessoas from './pages/CadastroPessoas';
-// Importa também as outras páginas que vais criar depois:
-// import LogsAcesso from './pages/LogsAcesso';
-// import Monitoramento from './pages/Monitoramento';
-
 import MenuNavegacao from './components/MenuNavegacao';
+import Login from './pages/Login';
+import RecuperarSenha from './pages/RecuperarSenha';
+import CadastroPessoas from './pages/CadastroPessoas';
 
+// ==========================================
+// COMPONENTES PROVISÓRIOS (MOCKS)
+// Criamos telas falsas apenas para testar a navegação visualmente
+// ==========================================
+const GestaoMock = () => (
+  <div style={{ padding: '40px', color: '#334155' }}>
+    <h2>TELA TESTE: Pessoas Cadastradas</h2>
+    <p>O Menu de Navegação está a injetar este conteúdo perfeitamente no espaço correto!</p>
+  </div>
+);
+
+const LogsMock = () => (
+  <div style={{ padding: '40px', color: '#334155' }}>
+    <h2>TELA TESTE: Logs de Entrada/Saída</h2>
+    <p>Se o menu lateral estiver marcado a vermelho nesta opção, o useLocation está a funcionar.</p>
+  </div>
+);
+
+const MonitoramentoMock = () => (
+  <div style={{ padding: '40px', color: '#334155' }}>
+    <h2>TELA TESTE: Monitoramento</h2>
+    <p>Área de dispositivos e catracas simulada.</p>
+  </div>
+);
+
+
+// ==========================================
+// GESTOR DE ROTAS
+// ==========================================
 function App() {
   return (
     <BrowserRouter>
       <Routes>
-        {/* A tela de Login fica fora do Menu de Navegação */}
+        {/* Rota raiz (Login) fora do menu */}
         <Route path="/" element={<Login />} />
 
-        {/* As outras telas ficam embrulhadas (wrapped) pelo MenuNavegacao */}
+        <Route path="/recuperarsenha" element={<RecuperarSenha />} />
+
+        {/* Rotas envolvidas pelo MenuNavegacao */}
         <Route path="/gestao" element={
           <MenuNavegacao>
-            <GestaoPessoas />
+            <GestaoMock />
           </MenuNavegacao>
         } />
         
+        <Route path="/logs" element={
+          <MenuNavegacao>
+            <LogsMock />
+          </MenuNavegacao>
+        } />
+
+        <Route path="/monitoramento" element={
+          <MenuNavegacao>
+            <MonitoramentoMock />
+          </MenuNavegacao>
+        } />
+
         <Route path="/cadastro" element={
           <MenuNavegacao>
             <CadastroPessoas />
           </MenuNavegacao>
         } />
-
-        {/* Quando as criares, adiciona as rotas para /logs e /monitoramento aqui, seguindo o mesmo padrão acima */}
       </Routes>
     </BrowserRouter>
   );
