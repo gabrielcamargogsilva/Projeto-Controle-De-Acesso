@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { User, Lock, Eye, EyeOff, LogIn, ShieldCheck } from 'lucide-react';
-import { login } from '../services/authService';
+import { login } from '../../services/authService';
 import './Login.css';
 
 function Login() {

@@ -62,7 +62,7 @@ function MenuNavegacao({ children }) {
             <span>Liberar Catraca</span>
           </button>
           <div className="topbar__perfil">
-            <strong>Marcos Vinicius Silva</strong>
+            <strong>Usuário</strong>
             <span>
               Operador de Portaria • <span className="destaque">SENAI SP</span>
             </span>

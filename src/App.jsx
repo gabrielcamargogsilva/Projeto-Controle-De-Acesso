@@ -2,18 +2,14 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import MenuNavegacao from './components/MenuNavegacao';
 import Login from './pages/Login';
 import RecuperarSenha from './pages/RecuperarSenha';
-import CadastroPessoas from './pages/CadastroPessoas';
+import GestaoPessoas from './pages/GestaoPessoas';
+// import CadastroPessoas from './pages/CadastroPessoas';
 
 // ==========================================
 // COMPONENTES PROVISÓRIOS (MOCKS)
 // Criamos telas falsas apenas para testar a navegação visualmente
 // ==========================================
-const GestaoMock = () => (
-  <div style={{ padding: '40px', color: '#334155' }}>
-    <h2>TELA TESTE: Pessoas Cadastradas</h2>
-    <p>O Menu de Navegação está a injetar este conteúdo perfeitamente no espaço correto!</p>
-  </div>
-);
+
 
 const LogsMock = () => (
   <div style={{ padding: '40px', color: '#334155' }}>
@@ -45,7 +41,7 @@ function App() {
         {/* Rotas envolvidas pelo MenuNavegacao */}
         <Route path="/gestao" element={
           <MenuNavegacao>
-            <GestaoMock />
+            <GestaoPessoas />
           </MenuNavegacao>
         } />
         
@@ -63,7 +59,6 @@ function App() {
 
         <Route path="/cadastro" element={
           <MenuNavegacao>
-            <CadastroPessoas />
           </MenuNavegacao>
         } />
       </Routes>
