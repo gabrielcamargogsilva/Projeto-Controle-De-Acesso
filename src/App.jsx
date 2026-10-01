@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import MenuNavegacao from './components/MenuNavegacao';
-import Login from './pages/Login';
-import RecuperarSenha from './pages/RecuperarSenha';
-import GestaoPessoas from './pages/GestaoPessoas';
+import MenuNavegacao from './components/MenuNavegacao.jsx';
+import Login from './pages/Login/Login.jsx';
+import RecuperarSenha from './pages/EsqueciSenha/RecuperarSenha.jsx';
+import GestaoPessoas from './pages/GestaoPessoas/GestaoPessoas.jsx';
 // import CadastroPessoas from './pages/CadastroPessoas';
 
 // ==========================================

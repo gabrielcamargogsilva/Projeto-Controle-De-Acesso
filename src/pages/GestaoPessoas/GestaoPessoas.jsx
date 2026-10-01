@@ -15,12 +15,16 @@ import {
     MoreVertical,
     ChevronLeft,
 } from 'lucide-react';
-import MenuNavegacao from '../../components/MenuNavegacao.jsx';
 import { getPessoas, alterarStatusAcesso } from '../../services/PessoasService.js';
 import './GestaoPessoas.css';
 
 const ITENS_POR_PAGINA = 10;
 const CORES_AVATAR = ['#e53e3e', '#2563eb', '#059669', '#9333ea', '#d97706', '#0891b2'];
+
+function formatarHoraAtual() {
+    const agora = new Date();
+    return `${String(agora.getHours()).padStart(2, '0')}:${String(agora.getMinutes()).padStart(2, '0')}`;
+}
 
 function iniciais(nome) {
     const partes = nome.trim().split(' ');
@@ -38,17 +42,14 @@ function GestaoPessoas() {
     const [busca, setBusca] = useState('');
     const [filtroStatus, setFiltroStatus] = useState('todos');
     const [pagina, setPagina] = useState(1);
-    const [sincronizadoAs, setSincronizadoAs] = useState('');
+    const [sincronizadoAs, setSincronizadoAs] = useState(() => formatarHoraAtual());
 
     useEffect(() => {
         getPessoas().then((dados) => {
             setPessoas(dados);
             setCarregando(false);
+            setSincronizadoAs(formatarHoraAtual());
         });
-        const agora = new Date();
-        setSincronizadoAs(
-            `${String(agora.getHours()).padStart(2, '0')}:${String(agora.getMinutes()).padStart(2, '0')}`
-        );
     }, []);
 
     const totalLiberados = pessoas.filter((p) => p.status === 'liberado').length;
