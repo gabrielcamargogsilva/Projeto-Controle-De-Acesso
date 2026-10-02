@@ -5,21 +5,7 @@ import RecuperarSenha from './pages/EsqueciSenha/RecuperarSenha.jsx';
 import GestaoPessoas from './pages/GestaoPessoas/GestaoPessoas.jsx';
 import LogsAcesso from './pages/Logs/LogsAcesso.jsx';
 import CadastroPessoas from './pages/CadastroPessoa/CadastroPessoas.jsx';
-
-// ==========================================
-// COMPONENTES PROVISÓRIOS (MOCKS)
-// Criamos telas falsas apenas para testar a navegação visualmente
-// ==========================================
-
-
-
-const MonitoramentoMock = () => (
-  <div style={{ padding: '40px', color: '#334155' }}>
-    <h2>TELA TESTE: Monitoramento</h2>
-    <p>Área de dispositivos e catracas simulada.</p>
-  </div>
-);
-
+import Monitoramento from './pages/Monitoramento/Monitoramento.jsx';
 
 // ==========================================
 // GESTOR DE ROTAS
@@ -48,7 +34,7 @@ function App() {
 
         <Route path="/monitoramento" element={
           <MenuNavegacao>
-            <MonitoramentoMock />
+            <Monitoramento />
           </MenuNavegacao>
         } />
 
