@@ -3,7 +3,8 @@ import MenuNavegacao from './components/MenuNavegacao.jsx';
 import Login from './pages/Login/Login.jsx';
 import RecuperarSenha from './pages/EsqueciSenha/RecuperarSenha.jsx';
 import GestaoPessoas from './pages/GestaoPessoas/GestaoPessoas.jsx';
-// import CadastroPessoas from './pages/CadastroPessoas';
+import LogsAcesso from './pages/Logs/LogsAcesso.jsx';
+import CadastroPessoas from './pages/CadastroPessoa/CadastroPessoas.jsx';
 
 // ==========================================
 // COMPONENTES PROVISÓRIOS (MOCKS)
@@ -11,12 +12,6 @@ import GestaoPessoas from './pages/GestaoPessoas/GestaoPessoas.jsx';
 // ==========================================
 
 
-const LogsMock = () => (
-  <div style={{ padding: '40px', color: '#334155' }}>
-    <h2>TELA TESTE: Logs de Entrada/Saída</h2>
-    <p>Se o menu lateral estiver marcado a vermelho nesta opção, o useLocation está a funcionar.</p>
-  </div>
-);
 
 const MonitoramentoMock = () => (
   <div style={{ padding: '40px', color: '#334155' }}>
@@ -47,7 +42,7 @@ function App() {
         
         <Route path="/logs" element={
           <MenuNavegacao>
-            <LogsMock />
+            <LogsAcesso />
           </MenuNavegacao>
         } />
 
@@ -57,8 +52,9 @@ function App() {
           </MenuNavegacao>
         } />
 
-        <Route path="/cadastro" element={
+        <Route path="/pessoas/cadastro" element={
           <MenuNavegacao>
+            <CadastroPessoas />
           </MenuNavegacao>
         } />
       </Routes>
