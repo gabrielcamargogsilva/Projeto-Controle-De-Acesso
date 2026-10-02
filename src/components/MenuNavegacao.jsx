@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
   KeyRound,
@@ -13,17 +13,61 @@ import {
   X,
 
 } from 'lucide-react';
+import { estacoesMock } from '../services/EstacoesMock.js';
 import './MenuNavegacao.css';
 
 function MenuNavegacao({ children }) {
   const location = useLocation();
   const [menuAberto, setMenuAberto] = useState(false);
+  const [modalAberto, setModalAberto] = useState(false);
+  const [catracaSelecionada, setCatracaSelecionada] = useState('');
+  const [toast, setToast] = useState({ visivel: false, mensagem: '' });
+  const toastTimerRef = useRef(null);
+
+  useEffect(() => {
+    return () => {
+      if (toastTimerRef.current) {
+        clearTimeout(toastTimerRef.current);
+      }
+    };
+  }, []);
+
+  const catracasDisponiveis = estacoesMock.map((estacao) => ({
+    id: estacao.id,
+    nome: estacao.catraca.nome,
+    local: estacao.nome,
+  }));
 
   const isActive = (path) => location.pathname === path;
 
   function irPara() {
     // fecha a sidebar ao navegar (relevante no mobile)
     setMenuAberto(false);
+  }
+
+  function abrirModalLiberacao() {
+    setCatracaSelecionada(catracasDisponiveis[0]?.nome ?? '');
+    setModalAberto(true);
+  }
+
+  function confirmarLiberacao() {
+    if (!catracaSelecionada) return;
+
+    if (toastTimerRef.current) {
+      clearTimeout(toastTimerRef.current);
+    }
+
+    setToast({
+      visivel: true,
+      mensagem: `Acesso liberado para ${catracaSelecionada}.`,
+    });
+
+    setModalAberto(false);
+    setCatracaSelecionada('');
+
+    toastTimerRef.current = setTimeout(() => {
+      setToast((prev) => ({ ...prev, visivel: false }));
+    }, 3000);
   }
 
   return (
@@ -57,7 +101,7 @@ function MenuNavegacao({ children }) {
         </div>
 
         <div className="topbar__direita">
-          <button className="topbar__acao">
+          <button type="button" className="topbar__acao" onClick={abrirModalLiberacao}>
             <KeyRound size={16} />
             <span>Liberar Catraca</span>
           </button>
@@ -76,6 +120,70 @@ function MenuNavegacao({ children }) {
       {/* ========================================== */}
       <div className="corpo">
         {menuAberto && <div className="overlay" onClick={() => setMenuAberto(false)} />}
+
+        {modalAberto && (
+          <div className="modal__overlay" onClick={() => setModalAberto(false)}>
+            <div
+              className="modal__container"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="titulo-liberar-catraca"
+              onClick={(event) => event.stopPropagation()}
+            >
+              <div className="modal__header">
+                <div>
+                  <span className="modal__eyebrow">Acesso manual</span>
+                  <h2 id="titulo-liberar-catraca">Liberar catraca</h2>
+                </div>
+                <button
+                  type="button"
+                  className="modal__fechar"
+                  onClick={() => setModalAberto(false)}
+                  aria-label="Fechar modal"
+                >
+                  <X size={18} />
+                </button>
+              </div>
+
+              <p className="modal__descricao">
+                Selecione a catraca que será liberada manualmente para passagem autorizada.
+              </p>
+
+              <div className="modal__lista">
+                {catracasDisponiveis.map((catraca) => (
+                  <button
+                    key={catraca.id}
+                    type="button"
+                    className={`modal__item ${catracaSelecionada === catraca.nome ? 'modal__item--ativo' : ''}`}
+                    onClick={() => setCatracaSelecionada(catraca.nome)}
+                  >
+                    <div className="modal__item-texto">
+                      <strong>{catraca.nome}</strong>
+                      <span>{catraca.local}</span>
+                    </div>
+                    {catracaSelecionada === catraca.nome && <span className="modal__check">✓</span>}
+                  </button>
+                ))}
+              </div>
+
+              <div className="modal__acoes">
+                <button type="button" className="modal__cancelar" onClick={() => setModalAberto(false)}>
+                  Cancelar
+                </button>
+                <button type="button" className="modal__confirmar" onClick={confirmarLiberacao} disabled={!catracaSelecionada}>
+                  Liberar acesso
+                </button>
+              </div>
+            </div>
+          </div>
+        )}
+
+        {toast.visivel && (
+          <div className="menu-toast menu-toast--visivel" role="status" aria-live="polite">
+            <span className="menu-toast__ponto" />
+            {toast.mensagem}
+          </div>
+        )}
 
         <aside className={`sidebar ${menuAberto ? 'sidebar--aberta' : ''}`}>
           <div className="sidebar__unidade">
