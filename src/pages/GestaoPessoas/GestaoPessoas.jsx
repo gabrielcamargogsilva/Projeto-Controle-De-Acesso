@@ -241,7 +241,7 @@ function GestaoPessoas() {
                                     <td>
                                         <span className="pill pill--metodo">
                                             <ScanFace size={14} />
-                                            {p.metodoAcesso} ({p.confiancaBiometria}%)
+                                            {p.metodoAcesso}
                                         </span>
                                     </td>
                                     <td>
