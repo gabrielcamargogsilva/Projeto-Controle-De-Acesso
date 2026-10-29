@@ -1,0 +1,5 @@
+# Arquivo de teste para validação do Gitleaks (segredo sintético de teste)
+# Não utilizar credenciais reais!
+
+FAKE_GITHUB_TOKEN=ghp_0123456789abcdefghijklmnopqrstuvwxyz
+FAKE_AWS_KEY=AKIAIMNOXYZ45678ABCD
